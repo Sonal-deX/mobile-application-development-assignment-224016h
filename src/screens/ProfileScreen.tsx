@@ -11,13 +11,13 @@ import {
 import { Feather } from '@expo/vector-icons';
 import { useAppDispatch, useAppSelector } from '../utils/hooks';
 import { logoutUser } from '../store/authSlice';
-import { toggleTheme } from '../store/themeSlice';
+import { setTheme } from '../store/themeSlice';
 import { COLORS, SPACING, FONT_SIZES, BORDER_RADIUS } from '../constants/theme';
 
 export default function ProfileScreen({ navigation }: any) {
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
-  const isDark = useAppSelector((state) => state.theme.isDark);
+  const isDark = useAppSelector((state) => Boolean(state.theme.isDark));
   const theme = isDark ? COLORS.dark : COLORS.light;
   const favorites = useAppSelector((state) => state.favorites.favorites);
 
@@ -32,8 +32,8 @@ export default function ProfileScreen({ navigation }: any) {
     ]);
   };
 
-  const handleToggleTheme = () => {
-    dispatch(toggleTheme());
+  const handleToggleTheme = (value: boolean) => {
+    dispatch(setTheme(value));
   };
 
   return (
@@ -81,7 +81,7 @@ export default function ProfileScreen({ navigation }: any) {
           <Switch
             value={isDark}
             onValueChange={handleToggleTheme}
-            trackColor={{ false: theme.border, true: theme.primary }}
+            ios_backgroundColor={theme.border}
             thumbColor="#FFFFFF"
           />
         </View>

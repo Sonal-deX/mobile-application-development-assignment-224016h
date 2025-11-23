@@ -17,7 +17,7 @@ import { Exercise } from '../types';
 export default function HomeScreen({ navigation }: any) {
   const dispatch = useAppDispatch();
   const { exercises, isLoading } = useAppSelector((state) => state.exercises);
-  const isDark = useAppSelector((state) => state.theme.isDark);
+  const isDark = useAppSelector((state) => Boolean(state.theme.isDark));
   const theme = isDark ? COLORS.dark : COLORS.light;
 
   useEffect(() => {

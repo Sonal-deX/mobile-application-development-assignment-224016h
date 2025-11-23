@@ -22,7 +22,7 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function MainTabs() {
-  const isDark = useAppSelector((state) => state.theme.isDark);
+  const isDark = useAppSelector((state) => Boolean(state.theme.isDark));
   const theme = isDark ? COLORS.dark : COLORS.light;
   const user = useAppSelector((state) => state.auth.user);
 
@@ -83,7 +83,7 @@ function MainTabs() {
 function AppNavigator() {
   const dispatch = useAppDispatch();
   const token = useAppSelector((state) => state.auth.token);
-  const isDark = useAppSelector((state) => state.theme.isDark);
+  const isDark = useAppSelector((state) => Boolean(state.theme.isDark));
   const theme = isDark ? COLORS.dark : COLORS.light;
 
   useEffect(() => {

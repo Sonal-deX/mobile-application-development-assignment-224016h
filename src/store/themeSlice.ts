@@ -15,7 +15,9 @@ const themeSlice = createSlice({
       AsyncStorage.setItem('theme', state.isDark ? 'dark' : 'light');
     },
     setTheme: (state, action: PayloadAction<boolean>) => {
-      state.isDark = action.payload;
+      // Ensure payload is always a boolean
+      state.isDark = Boolean(action.payload);
+      AsyncStorage.setItem('theme', state.isDark ? 'dark' : 'light');
     },
   },
 });

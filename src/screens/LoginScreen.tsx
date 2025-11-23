@@ -22,7 +22,7 @@ import { LoginFormData } from '../types';
 export default function LoginScreen({ navigation }: any) {
   const dispatch = useAppDispatch();
   const { isLoading, error } = useAppSelector((state) => state.auth);
-  const isDark = useAppSelector((state) => state.theme.isDark);
+  const isDark = useAppSelector((state) => Boolean(state.theme.isDark));
   const theme = isDark ? COLORS.dark : COLORS.light;
   const [showPassword, setShowPassword] = useState(false);
 
